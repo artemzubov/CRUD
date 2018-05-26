@@ -6,36 +6,43 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Employee Management Screen</title>
+<title>Book Shelf</title>
 </head>
 <body>
 	<div align="center">
-		<h1>Employee List</h1>
+		<h1>List of Books</h1>
 		
 		<table border="1">
 
-			<th>Name</th>
-			<th>Email</th>
-			<th>Address</th>
-			<th>Telephone</th>
-			<th>Action</th>
+			<th width="100">ID</th>
+			<th width="100">Title</th>
+			<th width="100">Description</th>
+			<th width="100">Author</th>
+			<th width="100">ISBN</th>
+			<th width="100">Year</th>
+			<th width="100">ReadAlready</th>
+			<th width="150">Action</th>
 
-			<c:forEach var="employee" items="${listEmployee}">
+			<c:forEach var="book" items="${listBook}">
 				<tr>
 
-					<td>${employee.name}</td>
-					<td>${employee.email}</td>
-					<td>${employee.address}</td>
-					<td>${employee.telephone}</td>
-					<td><a href="editEmployee?id=${employee.id}">Edit</a>
+					<td>${book.id}</td>
+					<td>${book.title}</td>
+					<td>${book.description}</td>
+					<td>${book.author}</td>
+					<td>${book.isbn}</td>
+					<td>${book.printYear}</td>
+					<td>${book.readAlready}</td>
+
+					<td><a href="editBook?id=${book.id}">Edit</a>
 						&nbsp;&nbsp;&nbsp;&nbsp; <a
-						href="deleteEmployee?id=${employee.id}">Delete</a></td>
+						href="deleteBook?id=${book.id}">Delete</a></td>
 
 				</tr>
 			</c:forEach>
 		</table>
 		<h4>
-			New Employee Register <a href="newEmployee">here</a>
+			New Employee Register <a href="newBook">here</a>
 		</h4>
 	</div>
 </body>

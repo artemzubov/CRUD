@@ -6,29 +6,37 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>New/Edit Contact</title>
+<title>New/Edit Book</title>
 </head>
 <body>
     <div align="center">
         <h1>New/Edit Employee</h1>
-        <form:form action="saveEmployee" method="post" modelAttribute="employee">
+        <form:form action="saveBook" method="post" modelAttribute="book">
         <table>
             <form:hidden path="id"/>
             <tr>
-                <td>Name:</td>
-                <td><form:input path="name" /></td>
+                <td>Title:</td>
+                <td><form:input path="title" /></td>
             </tr>
             <tr>
-                <td>Email:</td>
-                <td><form:input path="email" /></td>
+                <td>Description:</td>
+                <td><form:input path="description" /></td>
             </tr>
             <tr>
-                <td>Address:</td>
-                <td><form:input path="address" /></td>
+                <td>Author:</td>
+                <td><form:input path="author" /></td>
             </tr>
             <tr>
-                <td>Telephone:</td>
-                <td><form:input path="telephone" /></td>
+                <td>ISBN:</td>
+                <td><form:input path="isbn" /></td>
+            </tr>
+            <tr>
+                <td>Year:</td>
+                <td><form:input path="printYear" /></td>
+            </tr>
+            <tr>
+                <td>Already read:</td>
+                <td><form:input path="readAlready" /></td>
             </tr>
             <tr>
                 <td colspan="2" align="center"><input type="submit" value="Save"></td>
