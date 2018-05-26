@@ -42,7 +42,7 @@
 			</c:forEach>
 		</table>
 		<h4>
-			New Employee Register <a href="newBook">here</a>
+			Add new Book <a href="newBook">here</a>
 		</h4>
 	</div>
 </body>
