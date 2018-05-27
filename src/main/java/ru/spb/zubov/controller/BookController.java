@@ -51,7 +51,7 @@ public class BookController {
 	}
 
 	@RequestMapping(value = "/newBook", method = RequestMethod.GET)
-	public ModelAndView newContact(ModelAndView model) {
+	public ModelAndView newBook(ModelAndView model) {
 		Book book = new Book();
 		model.addObject("book", book);
 		model.setViewName("BookForm");
@@ -60,11 +60,12 @@ public class BookController {
 
 	@RequestMapping(value = "/saveBook", method = RequestMethod.POST)
 	public ModelAndView saveBook(@ModelAttribute Book book) {
-		if (book.getId() == 0) {
+	    book.setReadAlready(false);
+		if (book.getId() == 0)
 			bookService.addBook(book);
-		} else {
+		else
 			bookService.updateBook(book);
-		}
+
 		return new ModelAndView("redirect:/");
 	}
 
@@ -76,7 +77,7 @@ public class BookController {
 	}
 
 	@RequestMapping(value = "/editBook", method = RequestMethod.GET)
-	public ModelAndView editContact(HttpServletRequest request) {
+	public ModelAndView editBook(HttpServletRequest request) {
 		int bookId = Integer.parseInt(request.getParameter("id"));
 		Book book = bookService.getBook(bookId);
 		ModelAndView model = new ModelAndView("BookForm");
@@ -84,5 +85,21 @@ public class BookController {
 
 		return model;
 	}
+
+	@RequestMapping(value = "/readBook", method = RequestMethod.GET)
+    public ModelAndView readBook(HttpServletRequest request){
+        int bookId = Integer.parseInt(request.getParameter("id"));
+        Book book = bookService.getBook(bookId);
+        ModelAndView model = new ModelAndView("ReadBook");
+        model.addObject("book", book);
+        return model;
+    }
+
+    @RequestMapping(value = "/readBook", method = RequestMethod.POST)
+    public ModelAndView readBook(@ModelAttribute Book book){
+        book.setReadAlready(true);
+        bookService.updateBook(book);
+        return new ModelAndView("redirect:/");
+    }
 
 }

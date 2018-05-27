@@ -34,9 +34,12 @@
 					<td>${book.printYear}</td>
 					<td>${book.readAlready}</td>
 
-					<td><a href="editBook?id=${book.id}">Edit</a>
-						&nbsp;&nbsp;&nbsp;&nbsp; <a
-						href="deleteBook?id=${book.id}">Delete</a></td>
+					<td><a href="readBook?id=${book.id}">Read</a>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="editBook?id=${book.id}">Edit</a>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="deleteBook?id=${book.id}">Delete</a>
+					</td>
 
 				</tr>
 			</c:forEach>
