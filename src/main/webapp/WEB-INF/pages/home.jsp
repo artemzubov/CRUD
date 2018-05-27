@@ -45,5 +45,34 @@
 			Add new Book <a href="newBook">here</a>
 		</h4>
 	</div>
+	<div id="pagination" align="center">
+
+		<c:url value="/" var="prev">
+			<c:param name="page" value="${page-1}"/>
+		</c:url>
+		<c:if test="${page > 1}">
+			<a href="<c:out value="${prev}" />" class="pn prev">Prev</a>
+		</c:if>
+
+		<c:forEach begin="1" end="${pageCount}" step="1" varStatus="i">
+			<c:choose>
+				<c:when test="${page == i.index}">
+					<span>${i.index}</span>
+				</c:when>
+				<c:otherwise>
+					<c:url value="/" var="url">
+						<c:param name="page" value="${i.index}"/>
+					</c:url>
+					<a href='<c:out value="${url}" />'>${i.index}</a>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+		<c:url value="/" var="next">
+			<c:param name="page" value="${page + 1}"/>
+		</c:url>
+		<c:if test="${page + 1 <= pageCount}">
+			<a href='<c:out value="${next}" />' class="pn next">Next</a>
+		</c:if>
+	</div>
 </body>
 </html>

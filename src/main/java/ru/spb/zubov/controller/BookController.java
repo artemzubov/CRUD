@@ -5,10 +5,12 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import ru.spb.zubov.model.Book;
 import ru.spb.zubov.service.BookService;
@@ -23,9 +25,27 @@ public class BookController {
 	}
 
 	@RequestMapping(value = "/")
-	public ModelAndView listBook(ModelAndView model) {
+	public ModelAndView listBook(ModelAndView model, @RequestParam(required = false) Integer page) {
 		List<Book> listBook = bookService.getAllBooks();
-		model.addObject("listBook", listBook);
+
+		PagedListHolder<Book> pagedListHolder = new PagedListHolder<Book>(listBook);
+		pagedListHolder.setPageSize(10);
+		model.addObject("pageCount", pagedListHolder.getPageCount());
+
+		if(page == null || page < 1 || page > pagedListHolder.getPageCount())
+			page=1;
+
+		model.addObject("page", page);
+
+		if(page > pagedListHolder.getPageCount()){
+			pagedListHolder.setPage(0);
+			model.addObject("listBook", pagedListHolder.getPageList());
+		}
+		else {
+			pagedListHolder.setPage(page-1);
+			model.addObject("listBook", pagedListHolder.getPageList());
+		}
+
 		model.setViewName("home");
 		return model;
 	}
