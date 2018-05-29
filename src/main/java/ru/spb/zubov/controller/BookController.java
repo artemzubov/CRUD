@@ -25,20 +25,13 @@ public class BookController {
 	}
 
 	@RequestMapping(value = "/")
-	public ModelAndView listBook(ModelAndView model,
-								 @RequestParam(required = false) Integer page,
-								 @RequestParam(required = false) String title) {
+	public ModelAndView listBook(ModelAndView model, @RequestParam(required = false) Integer page, @RequestParam(required = false) String title) {
 
 		System.out.println("Here: RTHYHTYHZYHZYHYHGHTYHYHTFFEDSDFGVHFE$%TTYU%TRSU^TERYHUY^%%^YUT  " + title);
 
-
-
 		model.addObject("title", title);
 
-
 		List<Book> listBook = bookService.getAllBooks();
-
-
 
 		PagedListHolder<Book> pagedListHolder = new PagedListHolder<Book>(listBook);
 		pagedListHolder.setPageSize(10);

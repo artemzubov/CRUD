@@ -46,24 +46,24 @@
 					<%--</c:if>--%>
 
 
-					<%--<c:url value="/" var="home">--%>
-						<%--<c:param name="title" value="${title}"/>--%>
-					<%--</c:url>--%>
-					<%--<c:choose>--%>
-						<%--<c:when test="${!empty title}">--%>
-							<%--&lt;%&ndash;<span>${i.index}</span>&ndash;%&gt;--%>
-							<%--<a href="">--%>
-								<%--Find--%>
-							<%--</a>--%>
-						<%--</c:when>--%>
-						<%--<c:otherwise>--%>
-							<%--empty--%>
+					<c:url value="/" var="home">
+						<c:param name="title" value="${title}"/>
+					</c:url>
+					<c:choose>
+						<c:when test="${!empty title}">
+							<%--<span>${i.index}</span>--%>
+							<a href="">
+								Find
+							</a>
+						</c:when>
+						<c:otherwise>
+							empty
 							<c:url value="/" var="url">
 								<c:param name="title" value="${title}"/>
 							</c:url>
 							<a href='<c:out value="${url}" />'>Find</a>
-						<%--</c:otherwise>--%>
-					<%--</c:choose>--%>
+						</c:otherwise>
+					</c:choose>
 
 				</td>
 
