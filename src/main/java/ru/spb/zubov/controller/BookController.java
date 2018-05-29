@@ -37,8 +37,9 @@ public class BookController {
 		pagedListHolder.setPageSize(10);
 		model.addObject("pageCount", pagedListHolder.getPageCount());
 
-		if(page == null || page < 1 || page > pagedListHolder.getPageCount())
+		if(page == null || page < 1 || page > pagedListHolder.getPageCount()){
 			page=1;
+		}
 
 		model.addObject("page", page);
 
@@ -66,10 +67,12 @@ public class BookController {
 	@RequestMapping(value = "/saveBook", method = RequestMethod.POST)
 	public ModelAndView saveBook(@ModelAttribute Book book) {
 	    book.setReadAlready(false);
-		if (book.getId() == 0)
+		if (book.getId() == 0){
 			bookService.addBook(book);
-		else
+		}
+		else {
 			bookService.updateBook(book);
+		}
 
 		return new ModelAndView("redirect:/");
 	}
