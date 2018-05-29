@@ -2,6 +2,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html>
 <head>
@@ -22,6 +23,53 @@
 			<th width="100">Year</th>
 			<th width="100">ReadAlready</th>
 			<th width="150">Action</th>
+
+			<tr>
+
+				<td>This line is for searching.</td>
+				<td>
+					<p><input name="title" value="${title}"/></p>
+				</td>
+				<td>3</td>
+				<td>4</td>
+				<td>5</td>
+				<td>6</td>
+				<td>7</td>
+
+				<td>
+
+					<%--<c:url value="/" var="next">--%>
+						<%--<c:param name="page" value="${page + 1}"/>--%>
+					<%--</c:url>--%>
+					<%--<c:if test="${page + 1 <= pageCount}">--%>
+						<%--<a href='<c:out value="${next}" />' class="pn next">Find</a>--%>
+					<%--</c:if>--%>
+
+
+					<%--<c:url value="/" var="home">--%>
+						<%--<c:param name="title" value="${title}"/>--%>
+					<%--</c:url>--%>
+					<%--<c:choose>--%>
+						<%--<c:when test="${!empty title}">--%>
+							<%--&lt;%&ndash;<span>${i.index}</span>&ndash;%&gt;--%>
+							<%--<a href="">--%>
+								<%--Find--%>
+							<%--</a>--%>
+						<%--</c:when>--%>
+						<%--<c:otherwise>--%>
+							<%--empty--%>
+							<c:url value="/" var="url">
+								<c:param name="title" value="${title}"/>
+							</c:url>
+							<a href='<c:out value="${url}" />'>Find</a>
+						<%--</c:otherwise>--%>
+					<%--</c:choose>--%>
+
+				</td>
+
+			</tr>
+
+
 
 			<c:forEach var="book" items="${listBook}">
 				<tr>
