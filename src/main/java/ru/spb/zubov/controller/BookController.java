@@ -25,9 +25,9 @@ public class BookController {
 	}
 
 	@RequestMapping(value = "/")
-	public ModelAndView listBook(ModelAndView model, @RequestParam(required = false) Integer page, @RequestParam(required = false) String title) {
-
-		System.out.println("Here: RTHYHTYHZYHZYHYHGHTYHYHTFFEDSDFGVHFE$%TTYU%TRSU^TERYHUY^%%^YUT  " + title);
+	public ModelAndView listBook(ModelAndView model,
+                                 @RequestParam(required = false) Integer page,
+                                 @RequestParam(required = false, name = "title") String title) {
 
 		model.addObject("title", title);
 
@@ -78,26 +78,22 @@ public class BookController {
 	}
 
 	@RequestMapping(value = "/deleteBook", method = RequestMethod.GET)
-	public ModelAndView deleteBook(HttpServletRequest request) {
-		int bookId = Integer.parseInt(request.getParameter("id"));
-		bookService.deleteBook(bookId);
+	public ModelAndView deleteBook(@RequestParam Integer id) {
+		bookService.deleteBook(id);
 		return new ModelAndView("redirect:/");
 	}
 
 	@RequestMapping(value = "/editBook", method = RequestMethod.GET)
-	public ModelAndView editBook(HttpServletRequest request) {
-		int bookId = Integer.parseInt(request.getParameter("id"));
-		Book book = bookService.getBook(bookId);
+	public ModelAndView editBook(@RequestParam Integer id) {
+		Book book = bookService.getBook(id);
 		ModelAndView model = new ModelAndView("BookForm");
 		model.addObject("book", book);
-
 		return model;
 	}
 
 	@RequestMapping(value = "/readBook", method = RequestMethod.GET)
-    public ModelAndView readBook(HttpServletRequest request){
-        int bookId = Integer.parseInt(request.getParameter("id"));
-        Book book = bookService.getBook(bookId);
+    public ModelAndView readBook(@RequestParam Integer id){
+        Book book = bookService.getBook(id);
         ModelAndView model = new ModelAndView("ReadBook");
         model.addObject("book", book);
         return model;

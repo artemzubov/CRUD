@@ -25,10 +25,10 @@
 			<th width="150">Action</th>
 
 			<tr>
-
+				<form action="">
 				<td>This line is for searching.</td>
 				<td>
-					<p><input name="title" value="${title}"/></p>
+					<input type="text" placeholder="Enter title to find:" name="title" value="${title}">
 				</td>
 				<td>3</td>
 				<td>4</td>
@@ -36,37 +36,10 @@
 				<td>6</td>
 				<td>7</td>
 
-				<td>
-
-					<%--<c:url value="/" var="next">--%>
-						<%--<c:param name="page" value="${page + 1}"/>--%>
-					<%--</c:url>--%>
-					<%--<c:if test="${page + 1 <= pageCount}">--%>
-						<%--<a href='<c:out value="${next}" />' class="pn next">Find</a>--%>
-					<%--</c:if>--%>
-
-
-					<c:url value="/" var="home">
-						<c:param name="title" value="${title}"/>
-					</c:url>
-					<c:choose>
-						<c:when test="${!empty title}">
-							<%--<span>${i.index}</span>--%>
-							<a href="">
-								Find
-							</a>
-						</c:when>
-						<c:otherwise>
-							empty
-							<c:url value="/" var="url">
-								<c:param name="title" value="${title}"/>
-							</c:url>
-							<a href='<c:out value="${url}" />'>Find</a>
-						</c:otherwise>
-					</c:choose>
-
+				<td align="center">
+					<input type="submit" value="Find">
 				</td>
-
+				</form>
 			</tr>
 
 
@@ -102,7 +75,7 @@
 			<c:param name="page" value="${page-1}"/>
 		</c:url>
 		<c:if test="${page > 1}">
-			<a href="<c:out value="${prev}" />" class="pn prev">Prev</a>
+			<a href="<c:out value="${prev}&title=${param.title}" />" class="pn prev">Prev</a>
 		</c:if>
 
 		<c:forEach begin="1" end="${pageCount}" step="1" varStatus="i">
@@ -114,7 +87,7 @@
 					<c:url value="/" var="url">
 						<c:param name="page" value="${i.index}"/>
 					</c:url>
-					<a href='<c:out value="${url}" />'>${i.index}</a>
+					<a href='<c:out value="${url}&title=${param.title}" />'>${i.index}</a>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
@@ -122,7 +95,7 @@
 			<c:param name="page" value="${page + 1}"/>
 		</c:url>
 		<c:if test="${page + 1 <= pageCount}">
-			<a href='<c:out value="${next}" />' class="pn next">Next</a>
+			<a href='<c:out value="${next}&title=${param.title}" />' class="pn next">Next</a>
 		</c:if>
 	</div>
 </body>
