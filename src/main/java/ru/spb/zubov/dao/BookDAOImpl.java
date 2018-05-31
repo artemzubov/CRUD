@@ -19,8 +19,8 @@ public class BookDAOImpl implements BookDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Book> getAllBooks() {
-		return sessionFactory.getCurrentSession().createQuery("from Book").list();
+	public List<Book> getAllBooks(String queryString) {
+		return sessionFactory.getCurrentSession().createQuery(queryString).list();
 	}
 
 	public void deleteBook(Integer id) {

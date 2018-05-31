@@ -2,8 +2,6 @@ package ru.spb.zubov.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
@@ -26,37 +24,44 @@ public class BookController {
 
 	@RequestMapping(value = "/")
 	public ModelAndView listBook(ModelAndView model,
+                                 //I could have replaced it with HttpServletRequest, but I didn't want to
                                  @RequestParam(required = false) Integer page,
-                                 @RequestParam(required = false, name = "title") String title) {
+                                 @RequestParam(required = false, name = "title") String title,
+                                 @RequestParam(required = false, name = "description") String description,
+                                 @RequestParam(required = false, name = "author") String author,
+                                 @RequestParam(required = false, name = "isbn") String isbn,
+                                 @RequestParam(required = false, name = "yearFrom") String yearFrom,
+                                 @RequestParam(required = false, name = "yearTo") String yearTo,
+                                 @RequestParam(required = false, name = "readAlready") String readAlready) {
 
 		model.addObject("title", title);
+        model.addObject("description", description);
+        model.addObject("author", author);
+        model.addObject("isbn", isbn);
+        model.addObject("yearFrom", yearFrom);
+        model.addObject("yearTo", yearTo);
+        model.addObject("readAlready", readAlready);
 
-		List<Book> listBook = bookService.getAllBooks();
+        String queryString = getQuery(
+                title,
+                description,
+                author,
+                isbn,
+                yearFrom,
+                yearTo,
+                readAlready
+        );
 
-		PagedListHolder<Book> pagedListHolder = new PagedListHolder<Book>(listBook);
-		pagedListHolder.setPageSize(10);
-		model.addObject("pageCount", pagedListHolder.getPageCount());
+        List<Book> listBook = bookService.getAllBooks(queryString);
 
-		if(page == null || page < 1 || page > pagedListHolder.getPageCount()){
-			page=1;
-		}
-
-		model.addObject("page", page);
-
-		if(page > pagedListHolder.getPageCount()){
-			pagedListHolder.setPage(0);
-			model.addObject("listBook", pagedListHolder.getPageList());
-		}
-		else {
-			pagedListHolder.setPage(page - 1);
-			model.addObject("listBook", pagedListHolder.getPageList());
-		}
+        model = providePaging(model, page, listBook);
 
 		model.setViewName("home");
+
 		return model;
 	}
 
-	@RequestMapping(value = "/newBook", method = RequestMethod.GET)
+    @RequestMapping(value = "/newBook", method = RequestMethod.GET)
 	public ModelAndView newBook(ModelAndView model) {
 		Book book = new Book();
 		model.addObject("book", book);
@@ -104,6 +109,48 @@ public class BookController {
         book.setReadAlready(true);
         bookService.updateBook(book);
         return new ModelAndView("redirect:/");
+    }
+
+    private ModelAndView providePaging(ModelAndView model,
+                                       @RequestParam(required = false) Integer page,
+                                       List<Book> listBook) {
+
+        PagedListHolder<Book> pagedListHolder = new PagedListHolder<Book>(listBook);
+        pagedListHolder.setPageSize(10);
+        model.addObject("pageCount", pagedListHolder.getPageCount());
+
+        if(page == null || page < 1 || page > pagedListHolder.getPageCount()){
+            page=1;
+        }
+
+        model.addObject("page", page);
+
+        if(page > pagedListHolder.getPageCount()){
+            pagedListHolder.setPage(0);
+            model.addObject("listBook", pagedListHolder.getPageList());
+        }
+        else {
+            pagedListHolder.setPage(page - 1);
+            model.addObject("listBook", pagedListHolder.getPageList());
+        }
+
+        return model;
+    }
+
+    private String getQuery(String title,
+                            String description,
+                            String author,
+                            String isbn,
+                            String yearFrom,
+                            String yearTo,
+                            String readAlready) {
+
+        //why the "B" must be uppercase????????
+        String queryString = "from Book where id is not null";
+
+
+
+        return queryString;
     }
 
 }

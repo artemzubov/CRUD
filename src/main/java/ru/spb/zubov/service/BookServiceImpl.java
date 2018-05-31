@@ -24,8 +24,8 @@ public class BookServiceImpl implements BookService {
 		bookDAO.addBook(book);
 	}
 
-	public List<Book> getAllBooks() {
-		return bookDAO.getAllBooks();
+	public List<Book> getAllBooks(String queryString) {
+		return bookDAO.getAllBooks(queryString);
 	}
 
 	public void deleteBook(Integer id) {

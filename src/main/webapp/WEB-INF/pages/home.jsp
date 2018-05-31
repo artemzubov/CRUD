@@ -26,23 +26,33 @@
 
 			<tr>
 				<form action="">
-				<td>This line is for searching.</td>
-				<td>
-					<input type="text" placeholder="Enter title to find:" name="title" value="${title}">
-				</td>
-				<td>3</td>
-				<td>4</td>
-				<td>5</td>
-				<td>6</td>
-				<td>7</td>
-
-				<td align="center">
-					<input type="submit" value="Find">
-				</td>
+					<td>
+                        This line is for searching.
+                    </td>
+					<td>
+						<input type="text" name="title" value="${title}">
+					</td>
+					<td>
+                        <input type="text" name="description" value="${description}">
+                    </td>
+					<td>
+                        <input type="text" name="author" value="${author}">
+                    </td>
+					<td>
+                        <input type="text" name="isbn" value="${isbn}">
+                    </td>
+					<td>
+                        Date from: <input type="text" name="yearFrom" value="${yearFrom}"><br>
+                        Date to: <input type="text" name="yearTo" value="${yearTo}">
+                    </td>
+					<td>
+                        <input type="text" name="readAlready" value="${readAlready}">
+                    </td>
+					<td align="center">
+						<input type="submit" value="Find">
+					</td>
 				</form>
 			</tr>
-
-
 
 			<c:forEach var="book" items="${listBook}">
 				<tr>
@@ -75,7 +85,7 @@
 			<c:param name="page" value="${page-1}"/>
 		</c:url>
 		<c:if test="${page > 1}">
-			<a href="<c:out value="${prev}&title=${param.title}" />" class="pn prev">Prev</a>
+			<a href="<c:out value="${prev}&title=${param.title}&description=${param.description}&author=${param.author}&isbn=${param.isbn}&yearFrom=${param.yearFrom}&yearTo=${param.yearTo}&readAlready=${param.readAlready}" />" class="pn prev">Prev</a>
 		</c:if>
 
 		<c:forEach begin="1" end="${pageCount}" step="1" varStatus="i">
@@ -87,7 +97,7 @@
 					<c:url value="/" var="url">
 						<c:param name="page" value="${i.index}"/>
 					</c:url>
-					<a href='<c:out value="${url}&title=${param.title}" />'>${i.index}</a>
+					<a href="<c:out value="${url}&title=${param.title}&description=${param.description}&author=${param.author}&isbn=${param.isbn}&yearFrom=${param.yearFrom}&yearTo=${param.yearTo}&readAlready=${param.readAlready}" />">${i.index}</a>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
@@ -95,7 +105,7 @@
 			<c:param name="page" value="${page + 1}"/>
 		</c:url>
 		<c:if test="${page + 1 <= pageCount}">
-			<a href='<c:out value="${next}&title=${param.title}" />' class="pn next">Next</a>
+			<a href="<c:out value="${next}&title=${param.title}&description=${param.description}&author=${param.author}&isbn=${param.isbn}&yearFrom=${param.yearFrom}&yearTo=${param.yearTo}&readAlready=${param.readAlready}" />" class="pn next">Next</a>
 		</c:if>
 	</div>
 </body>
