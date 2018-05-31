@@ -30,23 +30,23 @@
                         This line is for searching.
                     </td>
 					<td>
-						<input type="text" name="title" value="${title}">
+						Title:<input type="text" name="title" value="${title}">
 					</td>
 					<td>
-                        <input type="text" name="description" value="${description}">
+                        Description contains:<input type="text" name="description" value="${description}">
                     </td>
 					<td>
-                        <input type="text" name="author" value="${author}">
+                        Author:<input type="text" name="author" value="${author}">
                     </td>
 					<td>
-                        <input type="text" name="isbn" value="${isbn}">
+                        ISBN(WTF is ISBN?):<input type="text" name="isbn" value="${isbn}">
                     </td>
 					<td>
                         Date from: <input type="text" name="yearFrom" value="${yearFrom}"><br>
                         Date to: <input type="text" name="yearTo" value="${yearTo}">
                     </td>
 					<td>
-                        <input type="text" name="readAlready" value="${readAlready}">
+                        Was it read?<input type="text" name="readAlready" value="${readAlready}">
                     </td>
 					<td align="center">
 						<input type="submit" value="Find">
