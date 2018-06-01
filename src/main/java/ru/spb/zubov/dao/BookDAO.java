@@ -7,11 +7,17 @@ public interface BookDAO {
 
 	void addBook(Book book);
 
-	List<Book> getAllBooks(String queryString);
+	List<Book> getAllBooks(String title,
+						   String description,
+						   String author,
+						   String isbn,
+						   String yearFrom,
+						   String yearTo,
+						   String readAlready);
 
-	void deleteBook(Integer bookId);
+	void deleteBook(Integer id);
 
 	Book updateBook(Book book);
 
-	Book getBook(int bookid);
+	Book getBook(Integer id);
 }

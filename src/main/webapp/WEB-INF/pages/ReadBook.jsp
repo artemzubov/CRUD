@@ -12,30 +12,37 @@
     <div align="center">
         <h1>Read Book</h1>
         <form:form action="readBook" method="post" modelAttribute="book">
-        <table>
+        <table border="1">
             <form:hidden path="id"/>
             <tr>
                 <td>Title:</td>
-                <td><form:input path="title" readonly="true"/></td>
+                <td align="center"><form:input path="title" readonly="true"/></td>
             </tr>
             <tr>
                 <td>Description:</td>
-                <td><form:input path="description" readonly="true"/></td>
+                <td align="center"><form:input path="description" readonly="true"/></td>
             </tr>
             <tr>
                 <td>Author:</td>
-                <td><form:input path="author" readonly="true"/></td>
+                <td align="center"><form:input path="author" readonly="true"/></td>
             </tr>
             <tr>
                 <td>ISBN:</td>
-                <td><form:input path="isbn" readonly="true"/></td>
+                <td align="center"><form:input path="isbn" readonly="true"/></td>
             </tr>
             <tr>
                 <td>Year:</td>
-                <td><form:input path="printYear" readonly="true"/></td>
+                <td align="center"><form:input path="printYear" readonly="true"/></td>
             </tr>
             <tr>
-                <td colspan="2" align="center"><input type="submit" value="I read it. Good."></td>
+                <td colspan="2" height="200" width="400">
+                    This is where the text of the book could be placed
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="I read it. Good.">
+                </td>
             </tr>
         </table>
         </form:form>

@@ -46,10 +46,13 @@
                         Date to: <input type="text" name="yearTo" value="${yearTo}">
                     </td>
 					<td>
-                        Was it read?<input type="text" name="readAlready" value="${readAlready}">
+                        Was it read?<br>
+                        true = read already<br>
+                        any other = unread still<input type="text" name="readAlready" value="${readAlready}">
                     </td>
 					<td align="center">
-						<input type="submit" value="Find">
+						<input type="submit" value="Find"><br><br>
+                        <a href="http://localhost:8080/?title=&description=&author=&isbn=&yearFrom=&yearTo=&readAlready=">Drop all filters</a>
 					</td>
 				</form>
 			</tr>
@@ -63,7 +66,16 @@
 					<td>${book.author}</td>
 					<td>${book.isbn}</td>
 					<td>${book.printYear}</td>
-					<td>${book.readAlready}</td>
+					<td>
+                        <c:choose>
+                            <c:when test="${book.readAlready}">
+                                Read already
+                            </c:when>
+                            <c:otherwise>
+                                Unread still
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
 
 					<td><a href="readBook?id=${book.id}">Read</a>
 						&nbsp;&nbsp;&nbsp;&nbsp;
@@ -85,7 +97,7 @@
 			<c:param name="page" value="${page-1}"/>
 		</c:url>
 		<c:if test="${page > 1}">
-			<a href="<c:out value="${prev}&title=${param.title}&description=${param.description}&author=${param.author}&isbn=${param.isbn}&yearFrom=${param.yearFrom}&yearTo=${param.yearTo}&readAlready=${param.readAlready}" />" class="pn prev">Prev</a>
+			<a href="<c:out value="${prev}&title=${param.title}&description=${param.description}&author=${param.author}&isbn=${param.isbn}&yearFrom=${param.yearFrom}&yearTo=${param.yearTo}&readAlready=${param.readAlready}" />">Prev</a>
 		</c:if>
 
 		<c:forEach begin="1" end="${pageCount}" step="1" varStatus="i">
@@ -105,7 +117,7 @@
 			<c:param name="page" value="${page + 1}"/>
 		</c:url>
 		<c:if test="${page + 1 <= pageCount}">
-			<a href="<c:out value="${next}&title=${param.title}&description=${param.description}&author=${param.author}&isbn=${param.isbn}&yearFrom=${param.yearFrom}&yearTo=${param.yearTo}&readAlready=${param.readAlready}" />" class="pn next">Next</a>
+			<a href="<c:out value="${next}&title=${param.title}&description=${param.description}&author=${param.author}&isbn=${param.isbn}&yearFrom=${param.yearFrom}&yearTo=${param.yearTo}&readAlready=${param.readAlready}" />">Next</a>
 		</c:if>
 	</div>
 </body>

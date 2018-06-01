@@ -27,7 +27,7 @@
             </c:if>
         </h1>
         <form:form action="saveBook" method="post" modelAttribute="book">
-        <table>
+        <table border="1">
             <form:hidden path="id"/>
             <tr>
                 <td>Title:</td>
@@ -40,6 +40,8 @@
             <tr>
                 <td>Author:</td>
                 <td>
+                    <%--The same page for creating and editing
+                     and if book already exist we cannot let anybody change author--%>
                     <c:if test="${!empty book.author}">
                         <form:input path="author" readonly="true"/>
                     </c:if>

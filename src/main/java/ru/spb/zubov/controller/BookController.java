@@ -42,7 +42,7 @@ public class BookController {
         model.addObject("yearTo", yearTo);
         model.addObject("readAlready", readAlready);
 
-        String queryString = getQuery(
+        List<Book> listBook = bookService.getAllBooks(
                 title,
                 description,
                 author,
@@ -51,8 +51,6 @@ public class BookController {
                 yearTo,
                 readAlready
         );
-
-        List<Book> listBook = bookService.getAllBooks(queryString);
 
         model = providePaging(model, page, listBook);
 
@@ -136,21 +134,4 @@ public class BookController {
 
         return model;
     }
-
-    private String getQuery(String title,
-                            String description,
-                            String author,
-                            String isbn,
-                            String yearFrom,
-                            String yearTo,
-                            String readAlready) {
-
-        //why the "B" must be uppercase????????
-        String queryString = "from Book where id is not null";
-
-
-
-        return queryString;
-    }
-
 }
