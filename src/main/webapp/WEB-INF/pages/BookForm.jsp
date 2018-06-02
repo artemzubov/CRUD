@@ -6,63 +6,88 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>
-    <c:if test="${!empty book.title}">
-        Update book
-    </c:if>
-    <c:if test="${empty book.title}">
-        Add new book
-    </c:if>
-</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>
+        <c:if test="${!empty book.title}">
+            Update book
+        </c:if>
+        <c:if test="${empty book.title}">
+            Add new book
+        </c:if>
+    </title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
-<body>
-    <div align="center">
-        <h1>
-            <c:if test="${!empty book.title}">
-                Update book
-            </c:if>
-            <c:if test="${empty book.title}">
-                Add new book
-            </c:if>
-        </h1>
-        <form:form action="saveBook" method="post" modelAttribute="book">
-        <table border="1">
-            <form:hidden path="id"/>
-            <tr>
-                <td>Title:</td>
-                <td><form:input path="title" /></td>
-            </tr>
-            <tr>
-                <td>Description:</td>
-                <td><form:input path="description" /></td>
-            </tr>
-            <tr>
-                <td>Author:</td>
-                <td>
-                    <%--The same page for creating and editing
-                     and if book already exist we cannot let anybody change author--%>
-                    <c:if test="${!empty book.author}">
-                        <form:input path="author" readonly="true"/>
+<body class="w3-sand">
+
+    <div>
+        <div class="w3-container w3-blue-grey w3-opacity w3-right-align">
+            <h1>Book shelf Application</h1>
+        </div>
+    </div>
+
+    <div class="w3-container w3-padding">
+        <div class="w3-card-4">
+
+            <div class="w3-container w3-center w3-green">
+                <h1>
+                    <c:if test="${!empty book.title}">
+                        Update book
                     </c:if>
-                    <c:if test="${empty book.author}">
-                        <form:input path="author"/>
+                    <c:if test="${empty book.title}">
+                        Add new book
                     </c:if>
-                </td>
-            </tr>
-            <tr>
-                <td>ISBN:</td>
-                <td><form:input path="isbn" /></td>
-            </tr>
-            <tr>
-                <td>Year:</td>
-                <td><form:input path="printYear" /></td>
-            </tr>
-            <tr>
-                <td colspan="2" align="center"><input type="submit" value="Save"></td>
-            </tr>
-        </table>
-        </form:form>
+                </h1>
+            </div>
+
+            <form:form action="saveBook" method="post" modelAttribute="book" class="w3-selection w3-light-grey w3-padding">
+                <table align="center">
+                    <form:hidden path="id"/>
+                    <tr>
+                        <td width="150">Title:</td>
+                        <td width="500"><form:input type="text" path="title" class="w3-input w3-animate-input w3-border w3-round-large" style="width: 80%"/></td>
+                    </tr>
+                    <tr>
+                        <td>Description:</td>
+                        <td><form:input type="text" path="description" class="w3-input w3-animate-input w3-border w3-round-large" style="width: 80%"/></td>
+                    </tr>
+                    <tr>
+                        <td>Author:</td>
+                        <td>
+                            <%--The same page for creating and editing
+                             and if book already exist we cannot let anybody change author--%>
+                            <c:if test="${!empty book.author}">
+                                <form:input type="text" path="author" class="w3-input w3-animate-input w3-border w3-round-large" style="width: 80%" readonly="true"/>
+                            </c:if>
+                            <c:if test="${empty book.author}">
+                                <form:input type="text" path="author" class="w3-input w3-animate-input w3-border w3-round-large" style="width: 80%"/>
+                            </c:if>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ISBN:</td>
+                        <td>
+                            <form:input type="text" path="isbn" class="w3-input w3-animate-input w3-border w3-round-large" style="width: 80%"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Year:</td>
+                        <td>
+                            <form:input type="text" path="printYear" class="w3-input w3-animate-input w3-border w3-round-large" style="width: 80%"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center">
+                            <button type="submit" class="w3-btn w3-green w3-round-large w3-margin-bottom">
+                                Save Book
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </form:form>
+        </div>
+    </div>
+    <div class="w3-container w3-grey w3-opacity w3-right-align w3-padding">
+        <button class="w3-btn w3-round-large" onclick="location.href='/'">Back to list of Books</button>
     </div>
 </body>
 </html>
