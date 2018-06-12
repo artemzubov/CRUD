@@ -75,7 +75,10 @@
                             <td>
                                 <button type="submit" class="w3-btn w3-green w3-round-large w3-margin-bottom">Find</button>
                                 <br>
-                                <a class="w3-btn w3-red w3-round-large" href="http://localhost:8080/?title=&description=&author=&isbn=&yearFrom=&yearTo=&readAlready=">Drop filters</a>
+                                <c:url value="/" var="firstPage">
+                                    <c:param name="page" value="${1}"/>
+                                </c:url>
+                                <a class="w3-btn w3-red w3-round-large" href="<c:out value="${firstPage}&title=&description=&author=&isbn=&yearFrom=&yearTo=&readAlready=" />">Drop filters</a>
                             </td>
                         </form>
                     </tr>
